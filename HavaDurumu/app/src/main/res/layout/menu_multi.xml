@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Koala"
+        android:id="@+id/buttonKoala"
+        android:width="100dp"
+        android:height="100dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Penguin"
+        android:id="@+id/buttonPenguin"
+        android:width="100dp"
+        android:height="100dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Other"
+        android:id="@+id/buttonOther"
+        android:width="100dp"
+        android:height="100dp"
+        android:layout_weight="1" />
+</LinearLayout>

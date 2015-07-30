@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/contaioner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Simple Fragment"
+        android:id="@+id/btnSimpleFragment"
+        android:layout_weight="0.08"
+        android:onClick="simple"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Multiple Fragment"
+        android:id="@+id/btnMultipleFragment"
+        android:onClick="multiple"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.08" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button4"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.09" />
+</LinearLayout>
