@@ -16,32 +16,33 @@ import android.widget.LinearLayout;
 import com.example.stajyer.havadurumu.R;
 import com.example.stajyer.havadurumu.com.wingnity.simplefrag.SimpleFragmentActivity;
 
+import java.util.ArrayList;
+
 public class ViewPagerActivity extends ActionBarActivity {
 
 
-    ImageView imageView1;
-    ImageView imageView2;
-    ImageView imageView3;
-    ImageView imageView4;
-    ImageView imageView5;
+    int favCont = 0;
+
+    ArrayList<ImageView> imageViewDots;
+
 
         ViewPager pager;
         ViewPagerAdapter adapter;
-
+     LinearLayout llContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
-        imageView1 = (ImageView) findViewById(R.id.imageView1);
-        imageView2 = (ImageView) findViewById(R.id.imageView2);
-        imageView3 = (ImageView) findViewById(R.id.imageView3);
-        imageView4 = (ImageView) findViewById(R.id.imageView4);
-        imageView5 = (ImageView) findViewById(R.id.imageView5);
+         llContainer = (LinearLayout) findViewById(R.id.llDotContai);
+
        pager = (ViewPager)findViewById(R.id.pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        favCont =adapter.getCount();
+        imageViewDots = new ArrayList<>();
+        generatePageDots();
+                pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -49,21 +50,18 @@ public class ViewPagerActivity extends ActionBarActivity {
 
             @Override
             public void onPageSelected(int position) {
-                imageView1.setBackgroundResource(R.drawable.circle_blue);
-                imageView2.setBackgroundResource(R.drawable.circle_blue);
-                imageView3.setBackgroundResource(R.drawable.circle_blue);
-                imageView4.setBackgroundResource(R.drawable.circle_blue);
-                imageView5.setBackgroundResource(R.drawable.circle_blue);
-                if(position == 0)
-                    imageView1.setBackgroundResource(R.drawable.circle_black);
-                else if(position == 1)
-                    imageView2.setBackgroundResource(R.drawable.circle_black);
-                else if(position == 2)
-                    imageView3.setBackgroundResource(R.drawable.circle_black);
-                else if(position == 3)
-                    imageView4.setBackgroundResource(R.drawable.circle_black);
-                else if(position == 4)
-                    imageView5.setBackgroundResource(R.drawable.circle_black);
+                int idx = 0;
+                for (ImageView imageView: imageViewDots){
+
+                    imageView.setImageResource(R.drawable.circle_blue);
+
+                    if(idx == position)
+                        imageView.setImageResource(R.drawable.circle_black);
+
+                    idx++;
+
+                }
+
 
             }
 
@@ -75,6 +73,22 @@ public class ViewPagerActivity extends ActionBarActivity {
 
     }
 
+    private void generatePageDots(){
 
+        for (int i = 0;i<favCont;i++){
+
+            ImageView imgView = new ImageView(this);
+            imgView.setImageResource(R.drawable.circle_blue);
+            int width = 20;
+            int height = 20;
+            LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
+            imgView.setLayoutParams(parms);
+            imageViewDots.add(imgView);
+            llContainer.addView(imgView);
+            imgView.requestLayout();
+
+        }
+
+    }
 
 }
