@@ -24,6 +24,10 @@
             android:name=".com.wingnity.multiplefrag.MultiFragActivity"
             android:label="@string/title_activity_multi_frag" >
         </activity>
+        <activity
+            android:name=".com.wingnity.com.wingnity.fragmentviewpager.ViewPagerActivity"
+            android:label="@string/title_activity_view_pager" >
+        </activity>
     </application>
 
 </manifest>

@@ -29,16 +29,17 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
+        android:text="Fragments with ViewPager"
+        android:id="@+id/buttonViewPager"
+        android:onClick="pager"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.09" />
 
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button4"
+        android:text="Menu Drawer"
+        android:id="@+id/btnMenuDrawer"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.09" />
 </LinearLayout>

@@ -6,4 +6,5 @@
     <string name="title_activity_simple_fragment">SimpleFragmentActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_multi_frag">MultiFragActivity</string>
+    <string name="title_activity_view_pager">ViewPagerActivity</string>
 </resources>
