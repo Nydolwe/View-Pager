@@ -3,6 +3,7 @@
     package="com.example.stajyer.havadurumu" >
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,18 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
-            android:name=".com.wingnity.simplefrag.SimpleFragmentActivity"
-            android:label="@string/title_activity_simple_fragment" >
+            android:name=".com.wingnity.com.wingnity.fragmentviewpager.Main2Activity"
+            android:label="@string/title_activity_main2" >
         </activity>
         <activity
-            android:name=".com.wingnity.multiplefrag.MultiFragActivity"
-            android:label="@string/title_activity_multi_frag" >
+            android:name=".com.wingnity.com.wingnity.fragmentviewpager.Favoriler"
+            android:label="@string/title_activity_favoriler" >
+
+
         </activity>
-        <activity
-            android:name=".com.wingnity.com.wingnity.fragmentviewpager.ViewPagerActivity"
-            android:label="@string/title_activity_view_pager" >
-        </activity>
+
+
     </application>
 
 </manifest>

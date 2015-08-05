@@ -1,10 +1,31 @@
 <resources>
     <string name="app_name">Hava Durumu</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_simple_fragment">SimpleFragmentActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_multi_frag">MultiFragActivity</string>
     <string name="title_activity_view_pager">ViewPagerActivity</string>
+    <string name="opendrawer">Open</string>
+    <string name="closedrawer">Close</string>
+    <string name="title_section1">Hava Durumu</string>
+    <string name="title_section2">Deniz Durumu</string>
+    <string name="title_section3">Hakkımızda</string>
+    <string name="title_section4">Favoriler</string>
+    <string name="title_section5">Ayarlar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_favoriler">Favoriler</string>
+    <string name="title_activity_hava_durumu">HavaDurumu</string>
+    <string-array name="Countrys">
+        <item>Turkey</item>
+        <item>Germany</item>
+        <item>England</item>
+    </string-array>
+    <string-array name="States">
+        <item>Istanbul</item>
+        <item>Munich</item>
+        <item>London</item>
+    </string-array>
 </resources>

@@ -1,45 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id = "@+id/contaioner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:gravity="center"
-
     android:weightSum="1">
 
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Simple Fragment"
-        android:id="@+id/btnSimpleFragment"
-        android:layout_weight="0.08"
-        android:onClick="simple"/>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Multiple Fragment"
-        android:id="@+id/btnMultipleFragment"
-        android:onClick="multiple"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Fragments with ViewPager"
+        android:text="GİRİŞ"
         android:id="@+id/buttonViewPager"
         android:onClick="pager"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.09" />
+        android:layout_weight="1"
+        android:layout_marginBottom="78dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="100dp"
+    <Spinner
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:text="Menu Drawer"
-        android:id="@+id/btnMenuDrawer"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.09" />
-</LinearLayout>
+        android:id="@+id/spinnerC"
+        android:layout_marginTop="44dp"
+        android:layout_weight="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/spinnerS"
+        android:layout_alignStart="@+id/spinnerS" />
+
+    <Spinner
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerS"
+        android:layout_weight="1"
+        android:layout_below="@+id/spinnerC"
+        android:layout_alignLeft="@+id/buttonViewPager"
+        android:layout_alignStart="@+id/buttonViewPager"
+        android:layout_marginTop="39dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sıcaklık"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/spinnerS"
+        android:layout_alignRight="@+id/buttonViewPager"
+        android:layout_alignEnd="@+id/buttonViewPager"
+        android:layout_marginTop="73dp"
+        android:showText="false"
+        android:textOff="C"
+        android:textOn="F" />
+</RelativeLayout>

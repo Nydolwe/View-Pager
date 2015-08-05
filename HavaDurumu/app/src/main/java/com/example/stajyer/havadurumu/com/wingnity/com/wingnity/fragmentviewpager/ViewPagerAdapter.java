@@ -31,7 +31,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
 
 
-        return 5;
+        return 7;
     }
 
 }
