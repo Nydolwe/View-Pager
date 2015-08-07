@@ -6,6 +6,34 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
+        //TODO
+
+        apply plugin: 'war'
+        apply plugin: 'sonar'
+        apply plugin: 'signing'
+        apply plugin: 'scala'
+        apply plugin: 'project-report'
+        apply plugin: 'pmd'
+        apply plugin: 'osgi'
+        apply plugin: 'maven'
+        apply plugin: 'jetty'
+        apply plugin: 'jdepend'
+        apply plugin: 'java'
+        apply plugin: 'idea'
+        apply plugin: 'groovy'
+        apply plugin: 'findbugs'
+        apply plugin: 'eclipse-wtp'
+        apply plugin: 'eclipse'
+        apply plugin: 'ear'
+        apply plugin: 'codenarc'
+        apply plugin: 'checkstyle'
+        apply plugin: 'build-announcements'
+        apply plugin: 'application'
+        apply plugin: 'antlr'
+        apply plugin: 'announce'
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+
+        compile 'com.android.support:appcompat-v7:22.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

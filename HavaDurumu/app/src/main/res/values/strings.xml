@@ -19,13 +19,23 @@
     <string name="title_activity_favoriler">Favoriler</string>
     <string name="title_activity_hava_durumu">HavaDurumu</string>
     <string-array name="Countrys">
-        <item>Turkey</item>
-        <item>Germany</item>
-        <item>England</item>
+        <item>Turkiye</item>
+        <item>Almanya</item>
+        <item>Ingiltere</item>
     </string-array>
-    <string-array name="States">
+    <string-array name="Turkey">
         <item>Istanbul</item>
-        <item>Munich</item>
-        <item>London</item>
+        <item>Ankara</item>
+        <item>Izmir</item>
+    </string-array>
+    <string-array name="Germany">
+        <item>Munih</item>
+        <item>Dortmund</item>
+    </string-array>
+    <string-array name="England">
+        <item>Manchester</item>
+        <item>Londra</item>
+        <item>Liverpool</item>
+
     </string-array>
 </resources>

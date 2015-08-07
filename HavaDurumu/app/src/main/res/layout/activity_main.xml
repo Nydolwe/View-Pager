@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true" />
 
     <Spinner
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerC"
         android:layout_marginTop="44dp"
@@ -30,7 +30,7 @@
         android:layout_alignStart="@+id/spinnerS" />
 
     <Spinner
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerS"
         android:layout_weight="1"
