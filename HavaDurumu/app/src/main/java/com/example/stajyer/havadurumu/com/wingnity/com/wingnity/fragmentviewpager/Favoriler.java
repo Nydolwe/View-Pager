@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
+
 public class Favoriler extends ActionBarActivity  {
 
 
@@ -37,11 +39,14 @@ public class Favoriler extends ActionBarActivity  {
 
             HashMap<String, Object> item = new HashMap<String, Object>();
 
-            item.put("name",data.toArray()[i].toString().split("#")[1] + i );
+            item.put("name",data.toArray()[i].toString().split("#")[1] +" - " +data.toArray()[i].toString().split("#")[2] );
 
             item.put("_id", data.toArray()[i].toString().split("#")[0]);
 
+            item.put("country", data.toArray()[i].toString().split("#")[2]);
+
             items[Integer.valueOf(data.toArray()[i].toString().split("#")[0])] = item;
+
         }
 
 
@@ -51,7 +56,8 @@ public class Favoriler extends ActionBarActivity  {
                 R.layout.row,
                 new String[]{"name"},
                 new int[]{R.id.textViewFavoriText},
-                R.id.handler,list));
+                R.id.handler, list));
+
         list.setOnItemDragNDropListener(new DragNDropListView.OnItemDragNDropListener() {
             @Override
             public void onItemDrag(DragNDropListView parent, View view, int position, long id) {
@@ -62,36 +68,18 @@ public class Favoriler extends ActionBarActivity  {
             @Override
             public void onItemDrop(DragNDropListView parent, View view, int startPosition, int endPosition, long id) {
 
+                SharedPreferences sprefs =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                final Set<String> data = sprefs.getStringSet("spinnerS", null) ;
+                HashSet<String> cities = (HashSet<String>) data;
+                SharedPreferences.Editor editor = sprefs.edit();
 
-                HashMap<String, Object>  firstitem = (HashMap<String, Object>) items[startPosition];
-                HashMap<String, Object>  seconditem = (HashMap<String, Object>) items[endPosition];
-
-                HashMap<String, Object> itemNew1 = new HashMap<String, Object>();
-
-                itemNew1.put("name", firstitem.get("name") );
-                itemNew1.put("_id",seconditem.get("_id"));
-
-                HashMap<String, Object> itemNew2 = new HashMap<String, Object>();
-
-                itemNew2.put("name", seconditem.get("name"));
-                itemNew2.put("_id", firstitem.get("_id"));
-
-                items[endPosition] = firstitem;
-                items[startPosition] = seconditem;
-
-
+                Set<String> sets = new HashSet<>();
 
             }
         });
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
 
-
-
-    }
 
 }
 

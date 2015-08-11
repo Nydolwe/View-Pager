@@ -8,11 +8,12 @@
     <string name="title_activity_view_pager">ViewPagerActivity</string>
     <string name="opendrawer">Open</string>
     <string name="closedrawer">Close</string>
-    <string name="title_section1">Hava Durumu</string>
-    <string name="title_section2">Deniz Durumu</string>
-    <string name="title_section3">Hakkımızda</string>
-    <string name="title_section4">Favoriler</string>
-    <string name="title_section5">Ayarlar</string>
+    <string name="title_section1">Home</string>
+    <string name="title_section2">Hava Durumu</string>
+    <string name="title_section3">Deniz</string>
+    <string name="title_section4">Hakkımızda</string>
+    <string name="title_section5">Favoriler</string>
+    <string name="title_section6">Ayarlar</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>

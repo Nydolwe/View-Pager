@@ -82,9 +82,6 @@ public class MainActivity extends ActionBarActivity {
 
         }
 
-
-
-
     }
 
     public void pager(View v){
@@ -94,28 +91,18 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Set<String> sets = new HashSet<>();
-
-        String city2 = "1#"+"İstanbul";
+        String city2 = "1#"+"İstanbul"+"#"+spinnerC.getSelectedItem().toString();
         sets.add(city2);
-        String city3 = "2#"+"Sinop";
-        sets.add(city3);
-        String city = "0#"+spinnerS.getSelectedItem().toString();
+        String city = "0#"+spinnerS.getSelectedItem().toString()+"#"+spinnerC.getSelectedItem().toString();
         sets.add(city);
+
+
         editor.putStringSet("spinnerS", sets);
         editor.commit();
-
-        SharedPreferences sharedPreferencesUlke = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        SharedPreferences.Editor editorulke = sharedPreferences.edit();
-        editorulke.putString("spinnerC", spinnerC.getSelectedItem().toString());
-        editorulke.commit();
-
 
 
         Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
         startActivity(intent);
-
-
 
 
        }

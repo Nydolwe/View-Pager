@@ -51,7 +51,7 @@ public class Main2Activity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         llContainer = (LinearLayout) findViewById(R.id.llDotContai);
         pager = (ViewPager)findViewById(R.id.pager);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(),this);
         pager.setAdapter(adapter);
         favCont =adapter.getCount();
         imageViewDots = new ArrayList<>();
@@ -84,6 +84,11 @@ public class Main2Activity extends ActionBarActivity
             Intent intent = new Intent(Main2Activity.this, Favoriler.class);
             startActivity(intent);
         }
+        else if (position == 1){
+            Intent intent1 = new Intent(Main2Activity.this,HavaDurumu.class);
+            startActivity(intent1);
+
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -102,6 +107,9 @@ public class Main2Activity extends ActionBarActivity
                 break;
             case 5:
                 mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
                 break;
         }
     }
