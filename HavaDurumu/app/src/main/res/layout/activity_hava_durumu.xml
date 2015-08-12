@@ -22,7 +22,8 @@
         android:id="@+id/llSearchItems">
         <EditText
             android:layout_width="210dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/et_location"/>
         <Button
             android:text="Ara"
             android:layout_width="wrap_content"

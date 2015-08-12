@@ -44,8 +44,8 @@
             android:label="@string/title_activity_hava_durumu" >
         </activity>
         <activity
-            android:name=".com.wingnity.com.wingnity.fragmentviewpager.HavaDurumu"
-            android:label="@string/title_activity_hava_durumu" >
+            android:name=".com.wingnity.com.wingnity.fragmentviewpager.Details"
+            android:label="@string/title_activity_details" >
         </activity>
     </application>
 

@@ -1,26 +1,17 @@
 package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.stajyer.havadurumu.R;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.model.Weather;
 
-import org.json.JSONException;
-
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
