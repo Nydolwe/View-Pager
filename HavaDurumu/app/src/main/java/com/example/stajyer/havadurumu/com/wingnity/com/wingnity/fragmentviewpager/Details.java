@@ -2,11 +2,14 @@ package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpag
 
 import org.json.JSONException;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +34,11 @@ public class Details extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        String city = "London,UnitedKingdom";
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String citytext = sharedPreferences.getString("city",null);
+
+        String city = citytext;
 
         cityText = (TextView) findViewById(R.id.cityText);
         condDescr = (TextView) findViewById(R.id.condDescr);
@@ -50,23 +57,23 @@ public class Details extends Activity {
 
 
 
-    private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
+    private class JSONWeatherTask extends AsyncTask<String, Void, Location> {
 
         @Override
-        protected Weather doInBackground(String... params) {
-            Weather weather = new Weather();
+        protected Location doInBackground(String... params) {
+            Location location = new Location();
             String data = ( (new WeatherHttpClient()).getWeatherData(params[0]));
 
             try {
-                weather = JSONWeatherParser.getWeather(data);
+                location = JSONWeatherParser.getLocation(data);
 
 
-                weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return weather;
+            return location;
 
         }
 
@@ -74,21 +81,20 @@ public class Details extends Activity {
 
 
         @Override
-        protected void onPostExecute(Weather weather) {
-            super.onPostExecute(weather);
+        protected void onPostExecute(Location location) {
+            super.onPostExecute(location);
 
-            if (weather.iconData != null && weather.iconData.length > 0) {
-                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
-                imgView.setImageBitmap(img);
-            }
+            cityText.setText(location.getCity());
 
-            cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+           // cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+            /*condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
             temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "°C");
             hum.setText("" + weather.currentCondition.getHumidity() + "%");
             press.setText("" + weather.currentCondition.getPressure() + " hPa");
             windSpeed.setText("" + weather.wind.getSpeed() + " mps");
-            windDeg.setText("" + weather.wind.getDeg() + "°");
+            windDeg.setText("" + weather.wind.getDeg() + "°");*/
+
+
 
 
         }

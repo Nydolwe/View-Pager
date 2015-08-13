@@ -1,4 +1,4 @@
-
+/*
 package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager;
 
 
@@ -171,3 +171,4 @@ public class Weather {
 	}
 
 }
+*/

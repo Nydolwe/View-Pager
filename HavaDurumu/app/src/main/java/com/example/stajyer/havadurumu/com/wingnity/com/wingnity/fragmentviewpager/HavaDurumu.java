@@ -22,18 +22,19 @@ import com.example.stajyer.havadurumu.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 
 
-public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerClickListener {
+
+public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWindowClickListener,GoogleMap.OnMarkerClickListener {
+
 
     //TODO
     GoogleMap googleMap;
@@ -132,6 +133,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerC
         setUpMapIfNeeded();
 
         googleMap.setOnMarkerClickListener(this);
+        googleMap.setOnInfoWindowClickListener(this);
 
     }
 
@@ -154,9 +156,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerC
     public boolean onMarkerClick(Marker marker) {
 
 
-        Intent intent = new Intent(this, Details.class);
-        startActivity(intent);
-        return false;
+      return false;
 
 
     }
@@ -184,13 +184,22 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerC
 
 
     private void setUpMap() {
-        mMap.getUiSettings().setZoomControlsEnabled(false);
-        mMap.getUiSettings().setZoomGesturesEnabled(false);
-        mMap.addMarker(new MarkerOptions().position(new LatLng(41.0138400, 28.9496600)).title("İstanbul").snippet("Yağmurlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.heavyrain)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(38.4127300, 27.1383800)).title("İzmir").snippet("Güneşli").icon(BitmapDescriptorFactory.fromResource(R.drawable.sunnyicon)));
-       Marker a1 = mMap.addMarker(new MarkerOptions().position(new LatLng(39.9198700, 32.8542700)).title("Ankara").snippet("Bulutlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.cloud_icon)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(a1.getPosition()));
+       // mMap.getUiSettings().setZoomControlsEnabled(false);
+       // mMap.getUiSettings().setZoomGesturesEnabled(false);
+       // mMap.addMarker(new MarkerOptions().position(new LatLng(41.0138400, 28.9496600)).title("İstanbul").snippet("Yağmurlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.heavyrain)));
+       // mMap.addMarker(new MarkerOptions().position(new LatLng(38.4127300, 27.1383800)).title("İzmir").snippet("Güneşli").icon(BitmapDescriptorFactory.fromResource(R.drawable.sunnyicon)));
+     //  Marker a1 = mMap.addMarker(new MarkerOptions().position(new LatLng(39.9198700, 32.8542700)).title("Ankara").snippet("Bulutlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.cloud_icon)));
+      // mMap.moveCamera(CameraUpdateFactory.newLatLng(a1.getPosition()));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(5), null);
+    }
+
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+        Intent intent = new Intent(this,Details.class);
+        startActivity(intent);
+
     }
 
 
@@ -213,6 +222,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerC
 
     @Override
     protected void onPostExecute(List<Address> addresses) {
+
         if(addresses==null || addresses.size()==0){
             Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
         }
@@ -220,17 +230,33 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnMarkerC
         for(int i=0;i<addresses.size();i++){
             Address address = (Address) addresses.get(i);
             latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            String addressText = String.format("%s, %s",
+
+            String addressText = String.format("%s,%s",
                     address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
-                    address.getCountryName());
+                    address.getCountryCode());
             markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.title(addressText);
+
             googleMap.addMarker(markerOptions);
-            if(i==0)
+
+
+
+            if(i==0) {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("city", addressText);
+                editor.commit();
+
+            }
+
         }
+
+
+
     }
 }
-    //TODO
 }

@@ -14,25 +14,26 @@ package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpag
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.json.*;
 
 
 
 public class JSONWeatherParser {
 
-	public static Weather getWeather(String data) throws JSONException  {
-		Weather weather = new Weather();
+	public static Location getLocation(String data) throws JSONException  {
+		//Weather weather = new Weather();
 
 		// We create out JSONObject from the data
 		JSONObject jObj = new JSONObject(data);
-		
-		// We start extracting the info
-		Location loc = new Location();
-		
-		JSONObject coordObj = getObject("coord", jObj);
-		loc.setLatitude(getFloat("lat", coordObj));
-		loc.setLongitude(getFloat("lon", coordObj));
-		
+
+		Location loc = new Location();// We start extracting the info
+
+
+		JSONArray rootCity = jObj.optJSONArray("request");
+		JSONObject cityObject = (JSONObject)rootCity.get(0);
+		String city = cityObject.optString("query").toString();
+
+	/*
 		JSONObject sysObj = getObject("sys", jObj);
 		loc.setCountry(getString("country", sysObj));
 		loc.setSunrise(getInt("sunrise", sysObj));
@@ -68,12 +69,12 @@ public class JSONWeatherParser {
 		
 		// We download the icon to show
 		
-		
-		return weather;
+		*/
+		return loc;
 	}
 	
-	
-	private static JSONObject getObject(String tagName, JSONObject jObj)  throws JSONException {
+	/*
+	private static JSONArray[] getObject(String tagName, JSONObject jObj)  throws JSONException {
 		JSONObject subObj = jObj.getJSONObject(tagName);
 		return subObj;
 	}
@@ -89,5 +90,5 @@ public class JSONWeatherParser {
 	private static int  getInt(String tagName, JSONObject jObj) throws JSONException {
 		return jObj.getInt(tagName);
 	}
-	
+	*/
 }
