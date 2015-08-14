@@ -44,15 +44,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="İstanbul"
-        android:id="@+id/cityText"
+        android:id="@+id/sehirIsim"
 
         android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Türkiye"
 
-        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
 
     <LinearLayout
@@ -75,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Güneşli"
-            android:id="@+id/condDescr"
+            android:id="@+id/havaDurum"
 
            />
 
@@ -99,12 +94,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="23 C   "
-            android:id="@+id/temp"
+            android:id="@+id/sicaklikC"
            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   67 F"/>
+            android:text="   67 F"
+            android:id="@+id/sicaklikF" />
 
     </LinearLayout>
     <LinearLayout
@@ -121,11 +117,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23 C   "/>
+            android:text="23 C   "
+            android:id="@+id/hissdilenSicaklikC" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   23 F"/>
+            android:text="   23 F"
+            android:id="@+id/hissedilenSicaklikF" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -142,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="62%"
-            android:id="@+id/hum"/>
+            android:id="@+id/nem"/>
 
     </LinearLayout>
     <LinearLayout
@@ -162,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1013"
-            android:id="@+id/press"
+            android:id="@+id/basinc"
             />
 
     </LinearLayout>
@@ -182,11 +180,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6.45   "
-            android:id="@+id/sunRise"/>
+            android:id="@+id/gunesDogus"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   19.45"/>
+            android:text="   19.45"
+            android:id="@+id/gunesBatis" />
 
     </LinearLayout>
     <LinearLayout
@@ -205,11 +204,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="19.50   "/>
+            android:text="19.50   "
+            android:id="@+id/ayDogus" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   4.30"/>
+            android:text="   4.30"
+            android:id="@+id/ayBatis" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -227,7 +228,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Güney Batı"
-            android:id="@+id/windDeg"/>
+            android:id="@+id/ruzgarYon"/>
 
     </LinearLayout>
     <LinearLayout
@@ -248,7 +249,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11 KM/sa"/>
+            android:text="11 KM/sa"
+            android:id="@+id/ruzgarHiz" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"

@@ -198,10 +198,10 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
     public void onInfoWindowClick(Marker marker) {
 
         Intent intent = new Intent(this,Details.class);
+
         startActivity(intent);
 
     }
-
 
     //TODO
     private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
@@ -219,6 +219,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
         }
         return addresses;
     }
+
 
     @Override
     protected void onPostExecute(List<Address> addresses) {
@@ -250,6 +251,9 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
                 editor.putString("city", addressText);
                 editor.commit();
+
+
+
 
             }
 
