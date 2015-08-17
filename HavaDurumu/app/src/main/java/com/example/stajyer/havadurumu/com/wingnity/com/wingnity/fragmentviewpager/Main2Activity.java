@@ -80,7 +80,7 @@ public class Main2Activity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        if(position == 3){
+        if(position == 2){
             Intent intent = new Intent(Main2Activity.this, Favoriler.class);
             startActivity(intent);
         }

@@ -20,14 +20,20 @@ import org.json.*;
 
 public class JSONWeatherParser {
 
-	public static Location getLocation(String data) throws JSONException  {
-        Location loc = new Location();
-		JSONObject jObj = new JSONObject(data);
+	public static Location getWeatherData(String data) throws JSONException  {
 
+		JSONObject jObj = new JSONObject(data);
+        Location loc = new Location();
+
+        JSONObject maindata = jObj.getJSONObject("data");
+
+        //JSONObject weather = (JSONObject) maindata.getJSONArray("weather").get(0);
+        //JSONObject astronomy = (JSONObject) weather.getJSONArray("astronomy").get(0);
+        //String moonrise = astronomy.getString("moonrise");
 
 
         //TODO
-		JSONArray weatherMoonrise = jObj.optJSONArray("weather");
+		JSONArray weatherMoonrise = maindata.optJSONArray("weather");
         JSONObject moonRiseObject = (JSONObject)weatherMoonrise.get(0);
         JSONArray moonRiseArray = moonRiseObject.optJSONArray("astronomy");
         JSONObject MoonRiseObject = (JSONObject)moonRiseArray.get(0);
@@ -36,7 +42,7 @@ public class JSONWeatherParser {
 
 
 
-        JSONArray weatherMoonset = jObj.optJSONArray("weather");
+        JSONArray weatherMoonset = maindata.optJSONArray("weather");
         JSONObject moonSetObject = (JSONObject)weatherMoonset.get(0);
         JSONArray moonSetArray = moonSetObject.optJSONArray("astronomy");
         JSONObject MoonSetObject = (JSONObject)moonSetArray.get(0);
@@ -44,15 +50,15 @@ public class JSONWeatherParser {
         loc.setMoonSet(MoonSetObject.optString("moonset").toString());
 
 
-        JSONArray weatherSunrise = jObj.optJSONArray("weather");
+        JSONArray weatherSunrise = maindata.optJSONArray("weather");
         JSONObject sunRiseObject = (JSONObject)weatherSunrise.get(0);
         JSONArray sunRiseArray = sunRiseObject.optJSONArray("astronomy");
         JSONObject SunRiseObject = (JSONObject)sunRiseArray.get(0);
         String sunRise = SunRiseObject.optString("sunrise").toString();
-        loc.setSunRise(sunRiseObject.optString("sunrise").toString());
+        loc.setSunRise(SunRiseObject.optString("sunrise").toString());
 
 
-        JSONArray weatherSunset = jObj.optJSONArray("weather");
+        JSONArray weatherSunset = maindata.optJSONArray("weather");
         JSONObject sunSetObject = (JSONObject)weatherSunset.get(0);
         JSONArray sunSetArray = sunSetObject.optJSONArray("astronomy");
         JSONObject SunSetObject = (JSONObject)sunSetArray.get(0);
@@ -60,68 +66,73 @@ public class JSONWeatherParser {
         loc.setSunSet(SunSetObject.optString("sunset").toString());
 
 
-        JSONArray weatherCondition = jObj.optJSONArray("current_condition");
+        JSONArray weatherCondition = maindata.optJSONArray("current_condition");
         JSONObject conditionObject =(JSONObject)weatherCondition.get(0);
         JSONArray conditionArray = conditionObject.getJSONArray("lang_tr");
         JSONObject ConditionObject = (JSONObject)conditionArray.get(0);
         String condition = ConditionObject.optString("value").toString();
         loc.setCondition(ConditionObject.optString("value").toString());
 
-        JSONArray conditiontempC = jObj.optJSONArray("current_condition");
+        JSONArray conditiontempC = maindata.optJSONArray("current_condition");
         JSONObject conditionTempCObject =(JSONObject) conditiontempC.get(0);
-        String tempC = conditionTempCObject.optString("tempC").toString();
-        loc.setTempC(conditionTempCObject.optString("tempC").toString());
+        String tempC = conditionTempCObject.optString("temp_C").toString();
+        loc.setTempC(conditionTempCObject.optString("temp_C").toString());
 
-        JSONArray conditiontempF = jObj.optJSONArray("current_condition");
+        JSONArray conditiontempF = maindata.optJSONArray("current_condition");
         JSONObject conditionTempFObject = (JSONObject) conditiontempF .get(0);
-        String tempF = conditionTempFObject.optString("tempF").toString();
-        loc.setTempF(conditionTempFObject.optString("tempF").toString());
+        String tempF = conditionTempFObject.optString("temp_F").toString();
+        loc.setTempF(conditionTempFObject.optString("temp_F").toString());
 
 
-        JSONArray conditionfeelslikeC = jObj.optJSONArray("current_condition");
+        JSONArray conditionfeelslikeC = maindata.optJSONArray("current_condition");
         JSONObject conditionfeelslikeCObject = (JSONObject) conditionfeelslikeC.get(0);
         String feelslikeC =conditionfeelslikeCObject.optString("FeelsLikeC").toString();
         loc.setFeelslikeC(conditionfeelslikeCObject.optString("FeelsLikeC").toString());
 
 
-         JSONArray conditionfeelslikeF = jObj.optJSONArray("current_condition");
+         JSONArray conditionfeelslikeF = maindata.optJSONArray("current_condition");
          JSONObject conditionfeelslikeFObject = (JSONObject)conditionfeelslikeF.get(0);
          String feelslikeF = conditionfeelslikeFObject.optString("FeelsLikeF").toString();
          loc.setFeelslikeF(conditionfeelslikeFObject.optString("FeelsLikeF").toString());
 
 
 
-         JSONArray pressureA = jObj.optJSONArray("current_condition");
+         JSONArray pressureA = maindata.optJSONArray("current_condition");
          JSONObject pressureObject = (JSONObject)pressureA.get(0);
          String pressure = pressureObject.optString("pressure").toString();
          loc.setPressure(pressureObject.optString("pressure").toString());
 
 
 
-         JSONArray humidityA = jObj.optJSONArray("current_condition");
+         JSONArray humidityA = maindata.optJSONArray("current_condition");
          JSONObject humidityObject = (JSONObject)humidityA.get(0);
          String humidity = humidityObject.optString("humidity").toString();
-         loc.setHumidity(humidityObject.optString("humidiy").toString());
+         loc.setHumidity(humidityObject.optString("humidity").toString());
 
 
-         JSONArray winddir16pointA = jObj.optJSONArray("current_condition");
+         JSONArray winddir16pointA = maindata.optJSONArray("current_condition");
          JSONObject winddir16pointObject = (JSONObject)winddir16pointA.get(0);
-         String winddir16point = winddir16pointObject.optString("winddir16point").toString();
-         loc.setWinddir16point(winddir16pointObject.optString("winddir16point").toString());
+         String winddir16point = winddir16pointObject.optString("winddir16Point").toString();
+         loc.setWinddir16point(winddir16pointObject.optString("winddir16Point").toString());
 
 
-         JSONArray windspeedKmphA = jObj.optJSONArray("current_condition");
+         JSONArray windspeedKmphA = maindata.optJSONArray("current_condition");
          JSONObject windspeedKmphObject = (JSONObject)windspeedKmphA.get(0);
          String windspeedKmph = windspeedKmphObject.optString("windspeedKmph").toString();
          loc.setWindspeedKmph(windspeedKmphObject.optString("windspeedKmph").toString());
 
 
-         JSONArray imageIconA = jObj.optJSONArray("current_condition");
+         JSONArray imageIconA = maindata.optJSONArray("current_condition");
          JSONObject imageIconObject =(JSONObject) imageIconA.get(0);
          JSONArray imageIconArray = imageIconObject.getJSONArray("weatherIconUrl");
          JSONObject ImageIconObject = (JSONObject) imageIconArray.get(0);
          String imageIcon = ImageIconObject.optString("value").toString();
          loc.setImageIcon(ImageIconObject.optString("value").toString());
+
+
+        JSONArray cityCountry = maindata.optJSONArray("request");
+        JSONObject cityCountryObject = (JSONObject) cityCountry.get(0);
+        loc.setCityCountry(cityCountryObject.optString("query").toString());
 
         //TODO
 

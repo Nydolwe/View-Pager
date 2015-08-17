@@ -32,6 +32,17 @@ public class Location implements Serializable {
 	private String winddir16point;
 	private String windspeedKmph;
 	private String imageIcon;
+	private String cityCountry;
+
+	public String getCityCountry() {
+		return cityCountry;
+	}
+
+	public void setCityCountry(String cityCountry) {
+		this.cityCountry = cityCountry;
+	}
+
+
 
 
 
@@ -74,8 +85,6 @@ public class Location implements Serializable {
 	}
 
 
-
-
 	public String getPressure() {
 		return pressure;
 	}
@@ -83,10 +92,6 @@ public class Location implements Serializable {
 	public void setPressure(String pressure) {
 		this.pressure = pressure;
 	}
-
-
-
-
 
 
 	public String getMoonRise() {
@@ -153,85 +158,5 @@ public class Location implements Serializable {
 		this.feelslikeF = feelslikeF;
 	}
 
-
-
-
-
-
-	//TODO
-
-
-
-
-
-	/*private float longitude;
-	private float latitude;
-	private long sunset;
-	private long sunrise;
-	//TODO
-	private long moonset;
-	private long moonrise;
-	//TODO
-	private String country;
-	private String city;
-
-
-
-
-	public float getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
-	public float getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
-	public long getSunset() {
-		return sunset;
-	}
-	public void setSunset(long sunset) {
-		this.sunset = sunset;
-	}
-	public long getSunrise() {
-		return sunrise;
-	}
-	public void setSunrise(long sunrise) {
-		this.sunrise = sunrise;
-	}
-	//TODO
-	public long getMoonset() {
-		return moonset;
-	}
-	public void setMoonset(long moonset) {
-		this.moonset = moonset;
-	}
-	public long getMoonrise() {
-		return moonrise;
-	}
-	public void setMoonrise(long moonrise) {
-		this.moonrise = moonrise;
-	}
-	//TODO
-
-
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
-	
-	*/
 	
 }

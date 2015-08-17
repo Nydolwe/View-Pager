@@ -28,7 +28,7 @@ public class WeatherHttpClient {
 
 	public WeatherListener listener;
 	static final String API_KEY = "22a430501f9f8ed2b55a1245d6768";
-	private static String BASE_URL = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=%s&format=json&num_of_days=1&cc=yes&showlocaltime=no&lang=tr&key="+ API_KEY;
+	private static String BASE_URL = "http://api.worldweatheronline.com/free/v2/weather.ashx?q=%s&format=json&num_of_days=1&showlocaltime=no&lang=tr&key="+ API_KEY;
 	public void getWeatherData(final String location) {
 		Thread thread = new Thread(new Runnable() {
 			@Override

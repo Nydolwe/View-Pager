@@ -16,7 +16,8 @@
         <ImageButton
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/plus_resize"/>
+            android:src="@drawable/plus_resize"
+            android:id="@+id/btnfavekle" />
 
 
         <ImageButton

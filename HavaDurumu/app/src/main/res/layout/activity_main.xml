@@ -39,16 +39,4 @@
         android:layout_alignStart="@+id/buttonViewPager"
         android:layout_marginTop="39dp" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sıcaklık"
-        android:id="@+id/switch1"
-        android:layout_below="@+id/spinnerS"
-        android:layout_alignRight="@+id/buttonViewPager"
-        android:layout_alignEnd="@+id/buttonViewPager"
-        android:layout_marginTop="73dp"
-        android:showText="false"
-        android:textOff="C"
-        android:textOn="F" />
 </RelativeLayout>

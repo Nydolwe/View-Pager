@@ -21,7 +21,7 @@ import java.util.Set;
 public class Favoriler extends ActionBarActivity  {
 
 
-
+    String cityNew;
 
     Map<String, Object>[] items;
     @Override
@@ -30,24 +30,32 @@ public class Favoriler extends ActionBarActivity  {
         setContentView(R.layout.activity_favoriler);
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            final Set<String> data = sharedPreferences.getStringSet("spinnerS", null) ;
+
+
+
+            final Set<String> data = sharedPreferences.getStringSet("spinnerS", null);
+
+
             HashSet<String> cities = (HashSet<String>) data;
+
+
 
         items = new  Map[cities.size()];
 
-        for(int i = 0; i < cities.size(); ++i) {
+        for(int i = 0; i < cities.size(); i++) {
 
             HashMap<String, Object> item = new HashMap<String, Object>();
 
-            item.put("name",data.toArray()[i].toString().split("#")[1] +" - " +data.toArray()[i].toString().split("#")[2] );
+            item.put("name",data.toArray()[i].toString().split(",")[1] +" - " +data.toArray()[i].toString().split(",")[2] );
 
-            item.put("_id", data.toArray()[i].toString().split("#")[0]);
+            item.put("_id", data.toArray()[i].toString().split(",")[0]);
 
-            item.put("country", data.toArray()[i].toString().split("#")[2]);
+            item.put("country", data.toArray()[i].toString().split(",")[2]);
 
-            items[Integer.valueOf(data.toArray()[i].toString().split("#")[0])] = item;
-
+           // items[Integer.valueOf(data.toArray()[i].toString().split(",")[0])] = item;
+            items[i] = item;
         }
+
 
 
         final DragNDropListView list = (DragNDropListView)findViewById(R.id.listViewDragDrop);

@@ -91,9 +91,8 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Set<String> sets = new HashSet<>();
-        String city2 = "1#"+"İstanbul"+"#"+spinnerC.getSelectedItem().toString();
-        sets.add(city2);
-        String city = "0#"+spinnerS.getSelectedItem().toString()+"#"+spinnerC.getSelectedItem().toString();
+
+        String city = "0,"+spinnerS.getSelectedItem().toString()+","+spinnerC.getSelectedItem().toString();
         sets.add(city);
 
 
@@ -105,7 +104,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
 
 
-       }
+
+    }
 
 
 

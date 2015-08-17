@@ -54,13 +54,13 @@ public class MyViewPagerFragment extends Fragment {
 
         items = new  Map[cities.size()];
 
-        for(int i = 0; i < cities.size(); ++i) {
+        for(int i = 0; i < cities.size(); i++) {
 
             if(idx == i) {
 
-                sehir.setText(data.toArray()[i].toString().split("#")[1] + i);
+                sehir.setText(data.toArray()[i].toString().split(",")[1] + i);
 
-                ulke.setText(data.toArray()[i].toString().split("#")[2]);
+                ulke.setText(data.toArray()[i].toString().split(",")[2]);
 
             }
 
