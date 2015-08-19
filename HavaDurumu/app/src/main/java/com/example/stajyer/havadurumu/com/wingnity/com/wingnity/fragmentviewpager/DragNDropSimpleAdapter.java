@@ -93,6 +93,8 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             @Override
             public void onClick(View v) {
 
+                
+
             }
         });
         return mainView;

@@ -72,10 +72,6 @@ public class MyViewPagerFragment extends Fragment {
 
         imageView = (ImageView)rootView.findViewById(R.id.imgCondition);
 
-
-
-
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         final  Set<String> favData = sharedPreferences.getStringSet("favs", null);
@@ -104,7 +100,7 @@ public class MyViewPagerFragment extends Fragment {
                         try {
 
 
-                            final Location location = JSONWeatherParser.getWeatherData(strArray[0]+","+strArray[1]);
+                            final Location location = JSONWeatherParser.getWeatherData(retVal);
 
                             getActivity().runOnUiThread(new Runnable() {
 
@@ -148,41 +144,25 @@ public class MyViewPagerFragment extends Fragment {
                     }
                 });
 
-
-               /* Derece.setText(strArray[2]+"C");
-                DereceF.setText(strArray[3]+"F");
-                Condition.setText(strArray[4]);
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        InputStream is = null;
-                        try {
-                            is = (InputStream) new URL(strArray[5]).getContent();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        final Drawable d = Drawable.createFromStream(is, "");
-                        imageView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                imageView.setImageDrawable(d);
-                            }
-                        });
-                    }
-                });
-                thread.start();*/
-
-
-
-
-
+                httpClient.getWeatherData(strArray[0]);
 
             }
 
         }
+
+
         return rootView;
     }
-        public Fragment get(int i) {
+
+
+
+
+
+
+
+
+
+    public Fragment get(int i) {
             return null;
         }
 

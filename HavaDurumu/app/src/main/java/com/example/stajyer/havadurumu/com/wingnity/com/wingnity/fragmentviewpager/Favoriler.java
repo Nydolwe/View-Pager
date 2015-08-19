@@ -31,7 +31,7 @@ public class Favoriler extends ActionBarActivity  {
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            Set<String> data = sharedPreferences.getStringSet("Favs", null);
+            Set<String> data = sharedPreferences.getStringSet("favs", null);
 
 
             HashSet<String> cities = (HashSet<String>) data;
@@ -68,11 +68,24 @@ public class Favoriler extends ActionBarActivity  {
             public void onItemDrop(DragNDropListView parent, View view, int startPosition, int endPosition, long id) {
 
                 SharedPreferences sprefs =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                final Set<String> data = sprefs.getStringSet("spinnerS", null) ;
-                HashSet<String> cities = (HashSet<String>) data;
                 SharedPreferences.Editor editor = sprefs.edit();
 
-                Set<String> sets = new HashSet<>();
+                final Set<String> data = sprefs.getStringSet("favs", null) ;
+
+
+                String array[] =data.toArray(new  String[data.size()]);
+                String temp = array[startPosition];
+                array[startPosition] = array[endPosition];
+                array[endPosition] = temp;
+
+               Set<String> tempS = new HashSet<String>(Arrays.asList(array));
+
+
+                editor.putStringSet("favs", tempS);
+
+               editor.commit();
+
+
 
             }
         });
