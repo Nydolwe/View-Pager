@@ -1,17 +1,24 @@
 package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager;
 
-import android.content.Context;
+
+
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.stajyer.havadurumu.R;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +26,7 @@ import java.util.Set;
 
 public class MyViewPagerFragment extends Fragment {
     Map<String, Object>[] items;
-    Context context;
+
 
     public MyViewPagerFragment() {
 
@@ -37,7 +44,18 @@ public class MyViewPagerFragment extends Fragment {
 
     public TextView ulke;
 
+    public TextView Derece;
+
+    public TextView DereceF;
+
+    public TextView Condition;
+
+    public ImageView imageView;
+
     public int idx;
+
+
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_view_pager, container, false);
@@ -46,21 +64,118 @@ public class MyViewPagerFragment extends Fragment {
 
         ulke =(TextView)rootView.findViewById(R.id.txtUlke);
 
+        Derece = (TextView)rootView.findViewById(R.id.lblderece);
+
+        DereceF = (TextView)rootView.findViewById(R.id.lbldereceF);
+
+        Condition = (TextView)rootView.findViewById(R.id.lblCondition);
+
+        imageView = (ImageView)rootView.findViewById(R.id.imgCondition);
+
+
+
+
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        final Set<String> data = sharedPreferences.getStringSet("spinnerS", null) ;
+        final  Set<String> favData = sharedPreferences.getStringSet("favs", null);
 
-        HashSet<String> cities = (HashSet<String>) data;
+        HashSet<String> favData2 = (HashSet<String>) favData;
 
-        items = new  Map[cities.size()];
 
-        for(int i = 0; i < cities.size(); i++) {
+        items = new  Map[favData2.size()];
+
+        for(int i = 0; i < favData2.size(); i++) {
 
             if(idx == i) {
 
-                sehir.setText(data.toArray()[i].toString().split(",")[1] + i);
+                String strData = favData.toArray(new String[i])[i];
+                final String strArray[] = strData.split(",");
 
-                ulke.setText(data.toArray()[i].toString().split(",")[2]);
+                sehir.setText(strArray[0]);
+                ulke.setText(strArray[1]);
+
+                WeatherHttpClient httpClient = new WeatherHttpClient();
+                httpClient.setListener(new WeatherListener() {
+                    @Override
+                    public void onSucceed(String retVal) {
+
+
+                        try {
+
+
+                            final Location location = JSONWeatherParser.getWeatherData(strArray[0]+","+strArray[1]);
+
+                            getActivity().runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    Derece.setText(location.getTempC());
+                                    DereceF.setText(location.getTempF());
+                                    Condition.setText(location.getCondition());
+
+                                    Thread thread = new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            InputStream is = null;
+                                            try {
+                                                is = (InputStream) new URL(location.getImageIcon()).getContent();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            final Drawable d = Drawable.createFromStream(is, "");
+                                            imageView.post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    imageView.setImageDrawable(d);
+                                                }
+                                            });
+                                        }
+                                    });
+
+
+                                    thread.start();
+                                }
+                            });
+                        } catch (JSONException e) {
+                                e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(String retVal) {
+
+                    }
+                });
+
+
+               /* Derece.setText(strArray[2]+"C");
+                DereceF.setText(strArray[3]+"F");
+                Condition.setText(strArray[4]);
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputStream is = null;
+                        try {
+                            is = (InputStream) new URL(strArray[5]).getContent();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        final Drawable d = Drawable.createFromStream(is, "");
+                        imageView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageDrawable(d);
+                            }
+                        });
+                    }
+                });
+                thread.start();*/
+
+
+
+
+
 
             }
 
@@ -71,5 +186,9 @@ public class MyViewPagerFragment extends Fragment {
             return null;
         }
 
-    }
+
+}
+
+
+
 

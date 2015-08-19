@@ -53,13 +53,22 @@ public class Main2Activity extends ActionBarActivity
         pager = (ViewPager)findViewById(R.id.pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager(),this);
         pager.setAdapter(adapter);
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         favCont =adapter.getCount();
         imageViewDots = new ArrayList<>();
         generatePageDots();
+        pager.getAdapter().notifyDataSetChanged();
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
+
             @Override
             public void onPageSelected(int position) {
                 int idx = 0;
@@ -70,6 +79,7 @@ public class Main2Activity extends ActionBarActivity
                     idx++;
                 }
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -80,7 +90,7 @@ public class Main2Activity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        if(position == 2){
+        if(position == 3){
             Intent intent = new Intent(Main2Activity.this, Favoriler.class);
             startActivity(intent);
         }
@@ -99,16 +109,14 @@ public class Main2Activity extends ActionBarActivity
             case 2:
                 mTitle = getString(R.string.title_section2);
                 break;
+
             case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-            case 4:
                 mTitle = getString(R.string.title_section4);
                 break;
-            case 5:
+            case 4:
                 mTitle = getString(R.string.title_section5);
                 break;
-            case 6:
+            case 5:
                 mTitle = getString(R.string.title_section6);
                 break;
         }
@@ -179,6 +187,7 @@ public class Main2Activity extends ActionBarActivity
     }
 
     private void generatePageDots(){
+        llContainer.removeAllViews();
         for (int i = 0;i<favCont;i++){
             ImageView imgView = new ImageView(this);
             if (i==0){
@@ -195,5 +204,9 @@ public class Main2Activity extends ActionBarActivity
             llContainer.addView(imgView);
             imgView.requestLayout();
         }
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }

@@ -22,11 +22,39 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="29C"
+        android:textSize="72dp"
+        android:id="@+id/lbldereceF"
+        android:layout_below="@+id/lblderece"
+        android:layout_alignLeft="@+id/lblderece"
+        android:layout_alignStart="@+id/lblderece"
+        android:layout_marginTop="46dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="İstanbul"
         android:textSize="48dp"
         android:id="@+id/txtSehir"
         android:layout_below="@+id/txtUlke"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:id="@+id/lblCondition"
+        android:layout_below="@+id/txtSehir"
+        android:layout_alignLeft="@+id/txtUlke"
+        android:layout_alignStart="@+id/txtUlke" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imgCondition"
+        android:layout_below="@+id/txtSehir"
+        android:layout_toLeftOf="@+id/txtSehir"
+        android:layout_toStartOf="@+id/txtSehir" />
 
 </RelativeLayout>

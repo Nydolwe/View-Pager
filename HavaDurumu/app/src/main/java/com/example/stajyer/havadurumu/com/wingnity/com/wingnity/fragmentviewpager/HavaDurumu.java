@@ -17,18 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.example.stajyer.havadurumu.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.io.IOException;
-
 import java.util.List;
 
 
@@ -36,11 +32,11 @@ import java.util.List;
 public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWindowClickListener,GoogleMap.OnMarkerClickListener {
 
 
-    //TODO
+
     GoogleMap googleMap;
     MarkerOptions markerOptions;
     LatLng latLng;
-    //TODO
+
 
 
 
@@ -56,7 +52,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
         setContentView(R.layout.activity_hava_durumu);
 
-        //TODO
+
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -84,7 +80,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
         // Setting button click event listener for the find button
         btn_find.setOnClickListener(findClickListener);
-        //TODO
+
 
 
 
@@ -144,17 +140,10 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-
-
     }
-
-
-
-
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
 
       return false;
 
@@ -238,7 +227,6 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
             markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.title(addressText);
-
             googleMap.addMarker(markerOptions);
 
 

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,7 +18,10 @@ import android.widget.TextView;
 
 import com.example.stajyer.havadurumu.R;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.SoftReference;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,7 +59,7 @@ public class Details extends Activity {
         final String citytext = sharedPreferences.getString("city", null);
 
 
-        final String city = citytext;
+
 
         cityName = (TextView) findViewById(R.id.sehirIsim);
         weatherCondition = (TextView)findViewById(R.id.havaDurum);
@@ -100,8 +104,26 @@ public class Details extends Activity {
                             moonset.setText("    " + location.getMoonSet());
                             winddegree.setText(location.getWinddir16point());
                             windspeed.setText(location.getWindspeedKmph());
-                            Imageview.setImageDrawable(LoadImageFromWebOperations(location.getImageIcon()));
                             cityName.setText(location.getCityCountry());
+                            Thread thread = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    InputStream is = null;
+                                    try {
+                                        is = (InputStream) new URL(location.getImageIcon()).getContent();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    final Drawable d = Drawable.createFromStream(is, "");
+                                    Imageview.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Imageview.setImageDrawable(d);
+                                        }
+                                    });
+                                }
+                            });
+                            thread.start();
 
                             ImageButton imgFavEkle = (ImageButton)findViewById(R.id.btnfavekle);
 
@@ -112,15 +134,51 @@ public class Details extends Activity {
                                 public void onClick(View v) {
                                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    final Set<String> data = sharedPreferences.getStringSet("spinnerS", null);
+
+                                    SharedPreferences.Editor favsEditor = sharedPreferences.edit();
+                                    final Set<String> favSet = sharedPreferences.getStringSet("favs", null);
+
+                                    String arr[] = location.getCityCountry().split(",");
+                                    String str = arr[0] + ","+arr[1];
+                                    favSet.add(str);
+
+                                    favsEditor.putStringSet("favs", favSet);
+                                    favsEditor.commit();
+
+                                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                                    startActivity(intent);
+
+                                  /*  final Set<String> data = sharedPreferences.getStringSet("spinnerS", null);
                                     String str = "0," + location.getCityCountry();
                                     data.add(str);
                                     editor.putStringSet("spinnerS", data);
                                     editor.commit();
                                     System.out.println(data);
-                                    Intent intent = new Intent(getApplicationContext(), Favoriler.class);
-                                    startActivity(intent);
+
+                                    SharedPreferences.Editor tempCfaveditor = sharedPreferences.edit();
+                                    final Set<String> citytempCSet = sharedPreferences.getStringSet("tempC",null);
+                                    String TempCC = location.getTempC();
+                                    citytempCSet.add(TempCC);
+                                    tempCfaveditor.putStringSet("tempC", citytempCSet);
+                                    tempCfaveditor.commit();
+
+                                    SharedPreferences.Editor tempFfaveditor = sharedPreferences.edit();
+                                    final Set<String> citytempFSet = sharedPreferences.getStringSet("tempF",null);
+                                    String TempFF = location.getTempF();
+                                    citytempFSet.add(TempFF);
+                                    tempFfaveditor.putStringSet("tempF", citytempFSet);
+                                    tempFfaveditor.commit();
+
+
+                                    SharedPreferences.Editor tempConditioneditor = sharedPreferences.edit();
+                                    final Set<String> tempConditionset = sharedPreferences.getStringSet("tempCondition",null);
+                                    String TempCondition = location.getCondition();
+                                    tempConditionset.add(TempCondition);
+                                    tempConditioneditor.putStringSet("tempCondition",tempConditionset);
+                                    tempConditioneditor.commit();
+
+                                    */
+
 
                                 }
                             });
@@ -148,6 +206,7 @@ public class Details extends Activity {
 
     }
 
+
     private void prepareData(String str) {
 
         try {
@@ -158,13 +217,8 @@ public class Details extends Activity {
         }
 
     }
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "value");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+
+
+
+
 }

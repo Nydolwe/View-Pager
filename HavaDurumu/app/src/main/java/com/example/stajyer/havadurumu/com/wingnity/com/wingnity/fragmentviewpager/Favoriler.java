@@ -31,14 +31,10 @@ public class Favoriler extends ActionBarActivity  {
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-
-
-            final Set<String> data = sharedPreferences.getStringSet("spinnerS", null);
+            Set<String> data = sharedPreferences.getStringSet("Favs", null);
 
 
             HashSet<String> cities = (HashSet<String>) data;
-
-
 
         items = new  Map[cities.size()];
 
@@ -46,17 +42,12 @@ public class Favoriler extends ActionBarActivity  {
 
             HashMap<String, Object> item = new HashMap<String, Object>();
 
-            item.put("name",data.toArray()[i].toString().split(",")[1] +" - " +data.toArray()[i].toString().split(",")[2] );
+            item.put("name",data.toArray()[i].toString().split(",")[0] +" - " +data.toArray()[i].toString().split(",")[1] );
 
-            item.put("_id", data.toArray()[i].toString().split(",")[0]);
+            item.put("country", data.toArray()[i].toString().split(",")[1]);
 
-            item.put("country", data.toArray()[i].toString().split(",")[2]);
-
-           // items[Integer.valueOf(data.toArray()[i].toString().split(",")[0])] = item;
             items[i] = item;
         }
-
-
 
         final DragNDropListView list = (DragNDropListView)findViewById(R.id.listViewDragDrop);
         list.setDragNDropAdapter(new DragNDropSimpleAdapter(this,

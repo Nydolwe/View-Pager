@@ -46,7 +46,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         SharedPreferences sharedPreferences;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        final Set<String> data = sharedPreferences.getStringSet("spinnerS", null) ;
+        final Set<String> data = sharedPreferences.getStringSet("favs", null) ;
         HashSet<String> cities = (HashSet<String>) data;
 
 
