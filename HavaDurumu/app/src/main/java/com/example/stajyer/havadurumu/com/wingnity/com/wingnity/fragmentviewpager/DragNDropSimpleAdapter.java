@@ -3,10 +3,15 @@ package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpag
 /**
  * Created by stajyer on 05.08.2015.
  */
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -65,7 +70,7 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup group) {
+    public View getView(final int position, View view, ViewGroup group) {
 
         View mainView = super.getView(mPosition[position], view, group);
 
@@ -93,9 +98,38 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             @Override
             public void onClick(View v) {
 
-                
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(DefaultApplication.context);
+
+                Set<String> data = sharedPreferences.getStringSet("favs", null);
+
+                String[] array = data.toArray(new String[data.size()]);
+
+                ArrayList<String> arrayList = new ArrayList<String>();
+
+                for (String s: array) {
+
+                    if(!dataList.get(position).get("name").toString().toLowerCase().contains(s.split(",")[0].toLowerCase())){
+
+                        arrayList.add(s);
+
+                    }
+
+                }
+
+                data.clear();
+
+                for (String s: arrayList
+                     ) {
+                    data.add(s);
+                }
+
+                sharedPreferences.edit().putStringSet("favs", data);
+                sharedPreferences.edit().commit();
+
+
 
             }
+
         });
         return mainView;
     }
