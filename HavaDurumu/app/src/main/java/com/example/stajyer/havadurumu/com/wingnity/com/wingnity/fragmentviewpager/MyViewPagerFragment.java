@@ -54,6 +54,8 @@ public class MyViewPagerFragment extends Fragment {
 
     public int idx;
 
+    public ImageView background;
+
 
 
 
@@ -71,6 +73,8 @@ public class MyViewPagerFragment extends Fragment {
         Condition = (TextView)rootView.findViewById(R.id.lblCondition);
 
         imageView = (ImageView)rootView.findViewById(R.id.imgCondition);
+
+        background = (ImageView)rootView.findViewById(R.id.bckgrndimage);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -106,9 +110,44 @@ public class MyViewPagerFragment extends Fragment {
 
                                 @Override
                                 public void run() {
-                                    Derece.setText(location.getTempC());
-                                    DereceF.setText(location.getTempF());
+                                    Derece.setText(location.getTempC()+" C");
+                                    DereceF.setText(location.getTempF()+" F");
                                     Condition.setText(location.getCondition());
+
+                                    if(location.getCondition().contains("Güneşli")){
+                                                background.setImageResource(R.drawable.gunesli);
+                                                background.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                                    }
+
+                                    else if(location.getCondition().contains("Parçalı Bulutlu")){
+                                                    background.setImageResource(R.drawable.parcalibulutlu);
+                                                    background.setScaleType(ImageView.ScaleType.FIT_XY);
+                                    }
+                                    else if(location.getCondition().contains("Çok Bulutlu")){
+                                        background.setImageResource(R.drawable.cokbulutlu);
+                                        background.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                                    }
+                                    else if (location.getCondition().contains("Bulutlu")){
+                                        background.setImageResource(R.drawable.bulutlu);
+                                        background.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
+                                    }
+
+                                    else if(location.getCondition().contains("Yağmur")){
+                                        background.setImageResource(R.drawable.yagmurlu);
+                                        background.setScaleType(ImageView.ScaleType.FIT_XY);
+                                    }
+                                    else if(location.getCondition().contains("yağmur")){
+                                        background.setImageResource(R.drawable.yagmurlu);
+                                        background.setScaleType(ImageView.ScaleType.FIT_XY);
+                                    }
+                                    else if(location.getCondition().contains("Karlı")){
+                                        background.setImageResource(R.drawable.karli);
+                                        background.setScaleType(ImageView.ScaleType.FIT_XY);
+                                    }
 
                                     Thread thread = new Thread(new Runnable() {
                                         @Override

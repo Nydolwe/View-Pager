@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+
     <!-- Maps API needs OpenGL ES 2.0. -->
     <application
         android:allowBackup="true"
@@ -33,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".com.wingnity.com.wingnity.fragmentviewpager.Main2Activity"
+            android:name=".com.wingnity.com.wingnity.fragmentviewpager.Home"
             android:label="@string/title_activity_main2" >
         </activity>
         <activity

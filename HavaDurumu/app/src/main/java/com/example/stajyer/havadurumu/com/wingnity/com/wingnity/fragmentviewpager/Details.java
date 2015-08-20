@@ -5,9 +5,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.preference.PreferenceManager;
@@ -20,10 +18,7 @@ import com.example.stajyer.havadurumu.R;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.ref.SoftReference;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -45,6 +40,7 @@ public class Details extends Activity {
     private TextView winddegree;
     private TextView windspeed;
     private ImageView Imageview;
+    private ImageView imgBackground;
 
 
 
@@ -76,6 +72,7 @@ public class Details extends Activity {
         winddegree = (TextView)findViewById(R.id.ruzgarYon);
         windspeed = (TextView)findViewById(R.id.ruzgarHiz);
         Imageview = (ImageView)findViewById(R.id.condIcon);
+        imgBackground =(ImageView)findViewById(R.id.imgBackground);
 
 
 
@@ -91,6 +88,40 @@ public class Details extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            if(location.getCondition().contains("Güneşli")){
+                                imgBackground.setImageResource(R.drawable.gunesli);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                            }
+
+                            else if(location.getCondition().contains("Parçalı Bulutlu")){
+                                imgBackground.setImageResource(R.drawable.parcalibulutlu);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+                            }
+                            else if(location.getCondition().contains("Çok Bulutlu")){
+                                imgBackground.setImageResource(R.drawable.cokbulutlu);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                            }
+                            else if (location.getCondition().contains("Bulutlu")){
+                                imgBackground.setImageResource(R.drawable.bulutlu);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
+                            }
+
+                            else if(location.getCondition().contains("Yağmur")){
+                                imgBackground.setImageResource(R.drawable.yagmurlu);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+                            }
+                            else if(location.getCondition().contains("yağmur")){
+                                imgBackground.setImageResource(R.drawable.yagmurlu);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+                            }
+                            else if(location.getCondition().contains("Karlı")){
+                                imgBackground.setImageResource(R.drawable.karli);
+                                imgBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+                            }
                             tempC.setText(location.getTempC() + "C      ");
                             tempF.setText(location.getTempF() + "F");
                             weatherCondition.setText(location.getCondition());
@@ -145,7 +176,7 @@ public class Details extends Activity {
                                     favsEditor.putStringSet("favs", favSet);
                                     favsEditor.commit();
 
-                                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                                    Intent intent = new Intent(getApplicationContext(), Home.class);
                                     startActivity(intent);
 
                                   /*  final Set<String> data = sharedPreferences.getStringSet("spinnerS", null);

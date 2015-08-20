@@ -21,10 +21,13 @@ import android.widget.TextView;
 
 import com.example.stajyer.havadurumu.R;
 
+import static com.google.android.gms.internal.zzhl.runOnUiThread;
+
 public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAdapter {
     private int mPosition[];
     private int mHandler;
     DragNDropListView lv;
+
 
     private List<? extends Map<String, ?>> dataList;
 
@@ -82,7 +85,7 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             @Override
             public void onClick(View v) {
 
-                btnDelete.setVisibility(btnDelete.getVisibility()==View.VISIBLE?View.INVISIBLE:View.VISIBLE);
+                btnDelete.setVisibility(btnDelete.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
 
                 for(int i=0;i<lv.getChildCount();i++){
                     View vv =  lv.getChildAt(i);
@@ -97,6 +100,8 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(DefaultApplication.context);
 
@@ -131,6 +136,7 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             }
 
         });
+
         return mainView;
     }
 

@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.JSONWeatherParser;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.Location;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.Main2Activity;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.WeatherHttpClient;
-import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.WeatherListener;
-import org.json.JSONException;
+
+import com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpager.Home;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +21,7 @@ import java.util.Set;
 public class MainActivity extends ActionBarActivity {
     Spinner spinnerC;
     Spinner spinnerS;
+    ImageView girisImg;
 
 
 
@@ -30,6 +29,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        girisImg = (ImageView)findViewById(R.id.girisImageView);
+        girisImg.setImageResource(R.drawable.gunesli);
+        girisImg.setScaleType(ImageView.ScaleType.FIT_XY);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -46,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
 
              //TODO
 
-            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+            Intent intent = new Intent(getApplicationContext(), Home.class);
             startActivity(intent);
 
 
@@ -116,7 +119,7 @@ public class MainActivity extends ActionBarActivity {
         editor.putStringSet("favs", sets);
         editor.commit();
 
-            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+            Intent intent = new Intent(getApplicationContext(), Home.class);
             startActivity(intent);
 
 

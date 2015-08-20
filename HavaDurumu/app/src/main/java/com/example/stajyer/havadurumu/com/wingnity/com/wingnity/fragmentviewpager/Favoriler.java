@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -32,6 +33,9 @@ public class Favoriler extends ActionBarActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoriler);
+
+
+
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -95,18 +99,13 @@ public class Favoriler extends ActionBarActivity  {
             }
         });
 
-        imgButton = (ImageButton)findViewById(R.id.buttonDelete);
-        imgButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
+
+        }
 
 
     }
 
 
 
-}
+
 

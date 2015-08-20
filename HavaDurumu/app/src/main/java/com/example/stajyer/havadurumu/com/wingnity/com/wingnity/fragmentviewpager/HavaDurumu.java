@@ -21,12 +21,14 @@ import com.example.stajyer.havadurumu.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 
 
 public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWindowClickListener,GoogleMap.OnMarkerClickListener {
@@ -40,10 +42,9 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
 
 
-   // Bitmap heavyrain = BitmapFactory.decodeResource(getResources(),R.drawable.heavyrain);
-   // Bitmap resized = Bitmap.createScaledBitmap(heavyrain,(int)(heavyrain.getWidth()*0.2),(int)(heavyrain.getHeight()*0.2),true);
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +57,20 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.map);
 
-        // Getting a reference to the map
+
         googleMap = supportMapFragment.getMap();
 
-        // Getting reference to btn_find of the layout activity_main
+
         Button btn_find = (Button) findViewById(R.id.btnSearch);
 
-        // Defining button click event listener for the find button
+
         View.OnClickListener findClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Getting reference to EditText to get the user input location
+
                 EditText etLocation = (EditText) findViewById(R.id.et_location);
 
-                // Getting user input location
+
                 String location = etLocation.getText().toString();
 
                 if(location!=null && !location.equals("")){
@@ -78,7 +79,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
             }
         };
 
-        // Setting button click event listener for the find button
+
         btn_find.setOnClickListener(findClickListener);
 
 
@@ -130,6 +131,16 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
         googleMap.setOnMarkerClickListener(this);
         googleMap.setOnInfoWindowClickListener(this);
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), null);
+        googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+
+            public void onCameraChange(CameraPosition arg0) {
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+                googleMap.setOnCameraChangeListener(this);
+            }
+        });
+
 
     }
 
@@ -140,6 +151,7 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(5), null);
     }
 
     @Override
@@ -161,11 +173,11 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(5), null);
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
-
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(5), null);
 
             }
         }
@@ -173,13 +185,33 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
 
 
     private void setUpMap() {
-       // mMap.getUiSettings().setZoomControlsEnabled(false);
-       // mMap.getUiSettings().setZoomGesturesEnabled(false);
-       // mMap.addMarker(new MarkerOptions().position(new LatLng(41.0138400, 28.9496600)).title("İstanbul").snippet("Yağmurlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.heavyrain)));
+
+
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10), null);
+
+
+        // mMap.addMarker(new MarkerOptions().position(new LatLng(41.0138400, 28.9496600)).title("İstanbul").snippet("Yağmurlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.heavyrain)));
        // mMap.addMarker(new MarkerOptions().position(new LatLng(38.4127300, 27.1383800)).title("İzmir").snippet("Güneşli").icon(BitmapDescriptorFactory.fromResource(R.drawable.sunnyicon)));
      //  Marker a1 = mMap.addMarker(new MarkerOptions().position(new LatLng(39.9198700, 32.8542700)).title("Ankara").snippet("Bulutlu").icon(BitmapDescriptorFactory.fromResource(R.drawable.cloud_icon)));
       // mMap.moveCamera(CameraUpdateFactory.newLatLng(a1.getPosition()));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(5), null);
+
+
+
+        //TODO
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Set<String> data = sharedPreferences.getStringSet("favs", null);
+        String sehir = data.toArray()[0].toString().split(",")[0]+","+data.toArray()[0].toString().split(",")[1];
+
+        if(sehir!=null && !sehir.equals("")){
+
+            new GeocoderTask().execute(sehir);
+        }
+        //TODO
+
+
+
+
+
     }
 
 
