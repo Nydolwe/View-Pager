@@ -75,6 +75,7 @@ public class MyViewPagerFragment extends Fragment {
         imageView = (ImageView)rootView.findViewById(R.id.imgCondition);
 
         background = (ImageView)rootView.findViewById(R.id.bckgrndimage);
+        background.setAlpha(0.5f);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 

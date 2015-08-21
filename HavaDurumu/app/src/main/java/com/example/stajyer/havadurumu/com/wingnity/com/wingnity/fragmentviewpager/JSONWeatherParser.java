@@ -27,11 +27,7 @@ public class JSONWeatherParser {
 
         JSONObject maindata = jObj.getJSONObject("data");
 
-        //JSONObject weather = (JSONObject) maindata.getJSONArray("weather").get(0);
-        //JSONObject astronomy = (JSONObject) weather.getJSONArray("astronomy").get(0);
-        //String moonrise = astronomy.getString("moonrise");
-
-
+       
         //TODO
 		JSONArray weatherMoonrise = maindata.optJSONArray("weather");
         JSONObject moonRiseObject = (JSONObject)weatherMoonrise.get(0);

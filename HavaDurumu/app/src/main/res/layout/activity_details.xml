@@ -22,14 +22,7 @@
             android:id="@+id/btnfavekle" />
 
 
-        <ImageButton
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:src="@drawable/twitter_buttonresize"/>
-        <ImageButton
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:src="@drawable/facebook_resize"/>
+
     </LinearLayout>
 
 
@@ -55,16 +48,16 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
+        android:layout_height="80dp"
+        android:orientation="vertical"
         android:layout_below="@+id/llSehirUlke"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:id="@+id/llhavgunesbulut">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/condIcon"
             />
             />

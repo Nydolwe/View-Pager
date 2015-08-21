@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="70dp">
 
 
     <ImageButton
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgDelete"
-        android:layout_weight="0.5"
         android:src="@drawable/rsz_deleteicon"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="FAVORİLER1"
+        android:text=""
         android:gravity="center"
         android:textColor="#000"
         android:id="@+id/textViewFavoriText"
@@ -27,7 +28,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
+        android:text=""
         android:background="#F00"
         android:id="@+id/buttonDelete"
         android:layout_gravity="right"

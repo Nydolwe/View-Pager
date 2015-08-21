@@ -125,31 +125,6 @@ public class Home extends ActionBarActivity
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-
-            getMenuInflater().inflate(R.menu.main2, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
     public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";

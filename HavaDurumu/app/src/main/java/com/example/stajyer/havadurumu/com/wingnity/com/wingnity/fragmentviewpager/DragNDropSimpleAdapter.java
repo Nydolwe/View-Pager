@@ -4,10 +4,14 @@ package com.example.stajyer.havadurumu.com.wingnity.com.wingnity.fragmentviewpag
  * Created by stajyer on 05.08.2015.
  */
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stajyer.havadurumu.R;
 
@@ -102,37 +107,65 @@ public class DragNDropSimpleAdapter extends SimpleAdapter implements DragNDropAd
             public void onClick(View v) {
 
 
-
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(DefaultApplication.context);
 
                 Set<String> data = sharedPreferences.getStringSet("favs", null);
 
                 String[] array = data.toArray(new String[data.size()]);
+                if (data.size()<=1){
 
-                ArrayList<String> arrayList = new ArrayList<String>();
+                    Toast.makeText(DefaultApplication.context, "Lütfen yeni favori ekleyip tekrar deneyiniz",
+                            Toast.LENGTH_LONG).show();
 
-                for (String s: array) {
 
-                    if(!dataList.get(position).get("name").toString().toLowerCase().contains(s.split(",")[0].toLowerCase())){
+                }
+                else {
 
-                        arrayList.add(s);
+                    ArrayList<String> arrayList = new ArrayList<String>();
+
+                    for (String s : array) {
+
+                        if (!dataList.get(position).get("name").toString().toLowerCase().contains(s.split(",")[0].toLowerCase())) {
+
+                            arrayList.add(s);
+
+                        }
 
                     }
 
+                    data.clear();
+
+                    for (String s : arrayList
+                            ) {
+                        data.add(s);
+                    }
+
+                    sharedPreferences.edit().putStringSet("favs", data);
+                    sharedPreferences.edit().commit();
+
+                    HashSet<String> cities = (HashSet<String>) data;
+
+                    Map<String, Object>[] items = new Map[cities.size()];
+
+                    for (int i = 0; i < cities.size(); i++) {
+
+
+                        HashMap<String, Object> item = new HashMap<String, Object>();
+
+                        item.put("name", data.toArray()[i].toString().split(",")[0] + " - " + data.toArray()[i].toString().split(",")[1]);
+
+                        item.put("country", data.toArray()[i].toString().split(",")[1]);
+
+                        items[i] = item;
+
+                    }
+
+                    dataList = new ArrayList<Map<String, Object>>(Arrays.asList(items));
+
+                    DragNDropSimpleAdapter.this.notifyDataSetChanged();
+
+
                 }
-
-                data.clear();
-
-                for (String s: arrayList
-                     ) {
-                    data.add(s);
-                }
-
-                sharedPreferences.edit().putStringSet("favs", data);
-                sharedPreferences.edit().commit();
-
-
-
             }
 
         });

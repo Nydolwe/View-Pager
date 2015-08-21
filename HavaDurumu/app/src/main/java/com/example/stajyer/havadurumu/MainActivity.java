@@ -70,11 +70,11 @@ public class MainActivity extends ActionBarActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String country = MainActivity.this.getResources().getStringArray(R.array.Countrys)[position];
 
-                    if (country.equals("Almanya")) {
+                    if (country.equals("Germany")) {
                         ArrayAdapter adapterS;
                         adapterS = ArrayAdapter.createFromResource(MainActivity.this, R.array.Germany, android.R.layout.simple_spinner_item);
                         spinnerS.setAdapter(adapterS);
-                    } else if (country.equals("Ingiltere")) {
+                    } else if (country.equals("United Kingdom")) {
                         ArrayAdapter adapterS = ArrayAdapter.createFromResource(MainActivity.this, R.array.England, android.R.layout.simple_spinner_item);
                         spinnerS.setAdapter(adapterS);
                     } else {

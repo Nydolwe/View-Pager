@@ -202,10 +202,11 @@ public class HavaDurumu extends FragmentActivity implements  GoogleMap.OnInfoWin
         Set<String> data = sharedPreferences.getStringSet("favs", null);
         String sehir = data.toArray()[0].toString().split(",")[0]+","+data.toArray()[0].toString().split(",")[1];
 
-        if(sehir!=null && !sehir.equals("")){
+                if (sehir != null && !sehir.equals("")) {
 
-            new GeocoderTask().execute(sehir);
-        }
+                    new GeocoderTask().execute(sehir);
+                }
+
         //TODO
 
 

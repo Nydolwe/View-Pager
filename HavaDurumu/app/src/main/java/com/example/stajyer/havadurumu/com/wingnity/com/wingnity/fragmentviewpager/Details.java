@@ -73,7 +73,7 @@ public class Details extends Activity {
         windspeed = (TextView)findViewById(R.id.ruzgarHiz);
         Imageview = (ImageView)findViewById(R.id.condIcon);
         imgBackground =(ImageView)findViewById(R.id.imgBackground);
-
+        imgBackground.setAlpha(0.5f);
 
 
         WeatherHttpClient httpClient = new WeatherHttpClient();
